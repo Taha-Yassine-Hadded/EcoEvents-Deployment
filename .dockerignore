@@ -1,0 +1,17 @@
+node_modules
+vendor
+.env
+.env.backup
+.git
+.gitignore
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+public/hot
+public/storage
