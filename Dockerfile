@@ -39,8 +39,10 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Expose port (optional)
 EXPOSE 8000
 
-# Start Laravel server
-CMD php artisan config:cache && \
+CMD php artisan config:clear && \
+    php artisan cache:clear && \
+    php artisan config:cache && \
+    php artisan route:cache && \
     php artisan view:cache && \
-    php artisan migrate --force && \
+    php artisan migrate:fresh --force && \
     php artisan serve --host=0.0.0.0 --port=$PORT
