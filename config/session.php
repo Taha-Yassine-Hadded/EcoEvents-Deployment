@@ -169,9 +169,9 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE', true),
 
-    /*
+    /*same_site
     |--------------------------------------------------------------------------
     | HTTP Access Only
     |--------------------------------------------------------------------------
@@ -199,7 +199,7 @@ return [
     |
     */
 
-    'same_site' => env('SESSION_SAME_SITE', 'lax'),
+    'same_site' => env('SESSION_SAME_SITE_COOKIE', 'lax'),
 
     /*
     |--------------------------------------------------------------------------
