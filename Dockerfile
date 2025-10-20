@@ -1,4 +1,4 @@
-# Use PHP 8.2 CLI (compatible with lcobucci packages)
+# Use PHP 8.2 CLI (compatible with Laravel 12 packages)
 FROM php:8.2-cli
 
 # Set working directory
@@ -36,15 +36,12 @@ RUN npm ci && npm run build
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port for Laravel
+# Expose port (optional)
 EXPOSE 8000
 
-# Start Laravel server AND queue worker
+# Start Laravel server (use Render's $PORT)
 CMD php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache && \
     php artisan migrate --force && \
-    # Start queue worker in background
-    php artisan queue:work --daemon & \
-    # Start Laravel server
-    php artisan serve --host=0.0.0.0 --port=8000
+    php artisan serve --host=0.0.0.0 --port=$PORT
