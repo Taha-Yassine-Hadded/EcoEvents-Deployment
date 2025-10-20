@@ -39,9 +39,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Expose port (optional)
 EXPOSE 8000
 
-# Start Laravel server (use Render's $PORT)
+# Start Laravel server without route caching to avoid conflicts
 CMD php artisan config:cache && \
-    php artisan route:cache && \
     php artisan view:cache && \
     php artisan migrate --force && \
     php artisan serve --host=0.0.0.0 --port=$PORT
